@@ -1,0 +1,31 @@
+Requires OCaml 4.02.0+.
+
+Example data files (lambda_virus.fa, reads/*) borrowed without
+permission from bowtie source distribution:
+http://bowtie-bio.sourceforge.net/index.shtml
+http://sourceforge.net/projects/bowtie-bio/files/bowtie/1.1.1/bowtie-1.1.1-linux-x86_64.zip/download
+
+Core algorithm adapted (with thanks!) from:
+http://www.cs.jhu.edu/~langmea/resources/bwt_fm.pdf
+
+Example usage:
+
+> make clean
+> make
+> ./bowtieXL -help
+Usage: ./bowtieXL -index -genome genome.fa -output index.dex
+       ./bowtieXL -align -index  index.dex -reads  reads.fq -output results.txt
+  -align -- Align short reads to a precomputed index
+  -index -- Create index of a genome
+  -help  Display this list of options
+  --help  Display this list of options
+> ./bowtieXL -index -genome data/reference/lambda_virus.fa \
+                    -output data/index/lambda_virus.dex
+Successfully wrote index to data/index/lambda_virus.dex
+> ./bowtieXL -align -index  data/index/lambda_virus.dex \
+                    -reads  data/reads/reads_1.fq \
+                    -output data/output/reads_1.align
+10000 / 10000 complete (100%)
+Alignment took 0.139080047607 s
+Writing reads to file.
+Successfully aligned reads. Output: data/output/reads_1.align
